@@ -111,7 +111,7 @@ public class VesselController {
 	}
 	
 	@GetMapping("/status/{status}")
-	public ResponseEntity<ApiResponse<List<VesselResponse>>> getVesselByStatusList(VesselStatus status){
+	public ResponseEntity<ApiResponse<List<VesselResponse>>> getVesselByStatusList(@PathVariable VesselStatus status){
 		List<VesselResponse> vessels=vesselService.getVesselByStatusList(status);
 		ApiResponse<List<VesselResponse>> apiResponse=new ApiResponse<>(HttpStatus.OK.value(),"Vessels Fetched Successfully By Status", vessels);
 		return  new ResponseEntity<>(apiResponse, HttpStatus.OK);
