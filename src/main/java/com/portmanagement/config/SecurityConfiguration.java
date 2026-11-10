@@ -47,6 +47,12 @@ public class SecurityConfiguration {
 	                .requestMatchers("/api/vessels/**")
 	                .hasRole("ADMIN")
 	                
+	                .requestMatchers(HttpMethod.GET, "/api/berths/**")
+	                .hasAnyRole("ADMIN", "PORT_OPERATOR", "SHIPPING_COMPANY")
+
+	                .requestMatchers("/api/berths/**")
+	                .hasRole("ADMIN")
+	                
 					.anyRequest().authenticated()
 					)
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);   //run my jwtAuthentivationFilter before spring security's UsernamePasswordAuthenticationFilter.
